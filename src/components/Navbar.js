@@ -53,7 +53,7 @@ export default class Example extends React.Component {
         <div className='d-flex justify-content-center' style={{backgroundColor: "#EDEADF"}}>
           <div className='nav-c pt-2 pb-2'>
             <Navbar light expand="md">
-              <NavbarBrand className='text-dark pr-4'>erGo</NavbarBrand>
+              <RouterLink to="/home"><NavbarBrand className='text-dark pr-4'>VerGo</NavbarBrand></RouterLink>
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav navbar>
                   <NavItem className='nav-ele'>
