@@ -1,4 +1,3 @@
-// Des.js
 import React, { useState } from 'react';
 import { Col, CardImg } from "react-bootstrap";
 import { Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Breadcrumb, BreadcrumbItem, CardImg, Button, ButtonGroup, Form, FormGroup, Input } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import Catlist from './Cats';

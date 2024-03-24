@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Card, CardImg, CardBody, CardText, Col } from "reactstrap";
+import { Container, Row, CardImg, Col } from "reactstrap";
 import { StaggeredText } from "./Animations";
 import newar1 from "../images/Newarr/casual-dress-code-men-street-style-luxe-digital-1-943x1100.jpg.webp"
 import newar2 from "../images/Newarr/aline-kaplan-zara-blazer-trousers-mango-waistcoat-lobus-bag-news-photo-1692315065.jpg"

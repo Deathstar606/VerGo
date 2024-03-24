@@ -9,7 +9,7 @@ import RenderItem from './Featured';
 import AboutUs from "./AboutUs";
 import Category from "./Category";
 import Footer from "./Footer";
-import { Container, Row, Col, CardImg, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
+import { Container, Row, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Example from './Navbar';
 import { Link, Switch, Route, Redirect, withRouter } from 'react-router-dom';
