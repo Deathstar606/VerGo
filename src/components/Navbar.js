@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, 
   Button, Modal, ModalHeader, ModalBody,
-  Form, FormGroup, Input, Label } from 'reactstrap';
+  Form, FormGroup, Input, Label, Row, Col } from 'reactstrap';
 import Burger from './Burger';
 import MediaQuery from 'react-responsive';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
+import { FaGoogle, FaTimes, FaUser, FaShoppingBag, FaSignInAlt } from 'react-icons/fa';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -53,7 +55,7 @@ export default class Example extends React.Component {
         <div className='d-flex justify-content-center' style={{backgroundColor: "#EDEADF"}}>
           <div className='nav-c pt-2 pb-2'>
             <Navbar light expand="md">
-              <RouterLink to="/home"><NavbarBrand className='text-dark pr-4'>VerGo</NavbarBrand></RouterLink>
+              <NavbarBrand href="/" className='text-dark pr-4'>VerGo</NavbarBrand>
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav navbar>
                   <NavItem className='nav-ele'>
@@ -80,22 +82,23 @@ export default class Example extends React.Component {
               <Nav className="ml-auto" navbar> 
                   <NavItem>
                     {!this.props.auth.isAuthenticated ?
-                      <div onClick={this.toggleModal}>
-                        <span className="fa fa-solid fa-user fa-lg mr-5"></span>
+                      <div className='mr-4' style={{paddingTop: "2px"}} onClick={this.toggleModal}>
+                        <FaUser className='mr-1'/> Login
                         {this.props.auth.isFetching ?
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            {/* <i class="fa fa-sign-in" aria-hidden="true"></i> */}
                           : null
                         }
                       </div>
                       :
                       <div>
-                        <div className="navbar-text text-dark mr-1">    
+                        <div className="navbar-text text-dark mr-1">   
                           <img
                             src={this.props.auth.user.photoURL}
                             alt={this.props.auth.user.displayName}
                             className="rounded-circle mr-2"
                             style={{ width: '30px' }}
                           />
+                        Signout
                         </div>
                         <span onClick={this.handleLogout}>
                           <span className="fa fa-sign-out fa-lg mr-4"></span>
@@ -114,7 +117,7 @@ export default class Example extends React.Component {
                   <NavItem>
                     {!this.props.auth.isAuthenticated ?
                       <div onClick={this.toggleModal}>
-                        <span className="fa fa-solid fa-user fa-lg mr-3"></span>Login
+                        <FaUser className='mr-4'/>Login
                         {this.props.auth.isFetching ?
                             <i class="fa fa-sign-in" aria-hidden="true"></i>
                           : null
@@ -122,7 +125,7 @@ export default class Example extends React.Component {
                       </div>
                       :
                       <div>
-                        <RouterLink to= "/cart"><i class="fa fa-shopping-cart mr-4" aria-hidden="true"></i></RouterLink>
+                        <RouterLink to= "/cart"><FaShoppingBag className='mr-3'/></RouterLink>
                         <div className="navbar-text text-dark mr-3">    
                           <img
                             src={this.props.auth.user.photoURL}
@@ -144,34 +147,54 @@ export default class Example extends React.Component {
                 </Nav>
               </MediaQuery>
             </Navbar>
+            <AnimatePresence>
+              {this.state.isModalOpen && (
+                <motion.div 
+                className='modal-back'
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1}}
+                exit={{ opacity: 0}}>
+                    <motion.div 
+                      className='d-flex justify-content-center m-5'
+                      initial={{ opacity: 0, y: -70}}
+                      animate={{ opacity: 1, y: 0}}
+                      exit={{ opacity: 0, y: -70}}>
+                        <Container className='d-flex justify-content-center' style={{position: "absolute"}}>
+                            <Col md={5} xs={12} className="p-4" style={{borderRadius: "20px", backgroundColor: "whitesmoke"}}>
+                              <h2 className="text-center mb-4">Login</h2>
+                              <Form onSubmit={this.handleLogin}>
+                              <FormGroup>
+                                <Label htmlFor="username">Email</Label>
+                                <Input type="text" id="username" name="username"
+                                  placeholder='Your Name'
+                                  innerRef={(input) => this.username = input} />
+                              </FormGroup>
+                              <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="password" id="password" name="password"
+                                  placeholder='Password'
+                                  innerRef={(input) => this.password = input} />
+                              </FormGroup>
+                                <div className='d-flex justify-content-center pb-2'>
+                                  <Button variant="primary" type="submit">
+                                    Login
+                                  </Button>
+                                </div>
+                                <div className='d-flex justify-content-center pb-2'>Or</div>
+                                <div className='d-flex justify-content-center'>
+                                  <Button onClick={this.handleGoogleLogin} variant="secondary outline">
+                                    <FaGoogle className="mr-1" /> Sign in with Google
+                                  </Button>
+                                </div>
+                                <FaTimes onClick={this.toggleModal} style={{position: "absolute", top: "10", right: "10"}}/>
+                              </Form>
+                            </Col>
+                        </Container>
+                      </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-            <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
-            <ModalBody>
-              <Form onSubmit={this.handleLogin}>
-                <FormGroup>
-                  <Label htmlFor="username">Email</Label>
-                  <Input type="text" id="username" name="username"
-                    innerRef={(input) => this.username = input} />
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlFor="password">Password</Label>
-                  <Input type="password" id="password" name="password"
-                    innerRef={(input) => this.password = input} />
-                </FormGroup>
-                <FormGroup check>
-                  <Label check>
-                    <Input type="checkbox" name="remember"
-                      innerRef={(input) => this.remember = input} />
-                    Remember me
-                  </Label>
-                </FormGroup>
-                <Button type="submit" value="submit" color="primary">Login</Button>
-              </Form>
-              <p></p>
-              <Button color="danger" onClick={this.handleGoogleLogin}><span className="fa fa-google fa-lg"></span> Login with Google</Button>
-            </ModalBody>
-          </Modal>
         </div>
       </>
     );

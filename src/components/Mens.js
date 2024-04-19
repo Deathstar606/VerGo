@@ -67,14 +67,14 @@ const Mens = (props) => {
                             <MediaQuery minWidth={639}>
                                 <Swiper
                                     autoplay={{
-                                        delay: 4800,
+                                        delay: 5850,
                                         disableOnInteraction: false,
                                     }}
                                     effect="fade"
                                     fadeEffect={{ crossFade: true }}
                                     onSwiper={setSwiper}
                                     modules={[EffectFade, Autoplay]}
-                                    speed={1000}
+                                    speed={850}
                                     >
                                     <SwiperSlide><CardImg className='zoom-in' src={men1}/></SwiperSlide>
                                     <SwiperSlide><CardImg className='zoom-in' src={men2}/></SwiperSlide>

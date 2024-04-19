@@ -11,7 +11,7 @@ function Category () {
             <Row className="mt-5 justify-content-center text-center">
                 <Col md={6} className="py-2">
                     <div className="d-flex justify-content-center catcard">
-                        <Link to= "/mens">
+                        <Link style={{ color: 'inherit', textDecoration: 'none' }} to= "/mens">
                             <div>
                                 <CardImg className="catimg" src={men}/>
                                 <div className="cat-body">

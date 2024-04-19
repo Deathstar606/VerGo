@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Breadcrumb, BreadcrumbItem, Button, CardImg, Row, Container, Dropdown, DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
@@ -13,34 +13,41 @@ function RenderMenuItem ({child, deleteCart}) {
 
    return (
             <>
-            <Col md={2} xs={6}>
-                <div className="cart-container">
-                <CardImg src={child.image} style={{borderRadius: "25px"}}/>
-                <div className="overlay">
-                    <span className="close-icon" onClick={() => deleteCart(child.clothid)}>&#10005;</span>
-                </div>
-                </div>
-            </Col>
-            <Col md={3} xs={6} className="d-flex align-items-center">
-                <div>
-                    <Link to={`/${child.clothid}`}><h4>name</h4></Link>
-                    <h5 className="text-muted">price</h5>
-                    <p>
-                        {child.size}<span className="ml-2">{child.color}</span>
-                    </p>
-                <DropdownButton
-                    id="quantity-dropdown"
-                    title={`Quantity: ${quantity}`}
-                    onSelect={handleSelect}
-                    variant="outline-dark"
-                    >
-                    <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">2</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">3</Dropdown.Item>
-                    <Dropdown.Item eventKey="4">4</Dropdown.Item>
-                    <Dropdown.Item eventKey="5">5</Dropdown.Item>
-                </DropdownButton>
-                </div>
+            <Col md={6} xs={12} className='d-flex mb-5'>
+                <Col md={6}>
+                    <div className="cart-container">
+                        <CardImg src={child.image} style={{ borderRadius: "25px" }} />
+                        <div className="overlay">
+                            <span className="close-icon" onClick={() => deleteCart(child.clothid)}>
+                            &#10005;
+                            </span>
+                        </div>
+                    </div>
+                </Col>
+                <Col md={6} className='d-flex align-items-center'>
+                    <div>
+                        <Link to={`/${child.clothid}`}>
+                            <h4>Name</h4>
+                        </Link>
+                        <h5 className="text-muted">Price</h5>
+                        <p>
+                            {child.size}
+                            <span className="ml-2">{child.color}</span>
+                        </p>
+                        <DropdownButton
+                            id="quantity-dropdown"
+                            title={`Quantity: ${quantity}`}
+                            onSelect={handleSelect}
+                            variant="outline-dark"
+                        >
+                            <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                            <Dropdown.Item eventKey="2">2</Dropdown.Item>
+                            <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                            <Dropdown.Item eventKey="4">4</Dropdown.Item>
+                            <Dropdown.Item eventKey="5">5</Dropdown.Item>
+                        </DropdownButton>
+                    </div>
+                </Col>
             </Col>
             </>
     );
@@ -66,7 +73,7 @@ const Carts = (props) => {
             </div>
         )
     }
-    else if (props.cart.cart) {
+    else if (props.cart.cart[0]) {
 
         const cloth = props.cart.cart.map((element) => {
         
@@ -84,14 +91,14 @@ const Carts = (props) => {
                             <BreadcrumbItem active>Cart</BreadcrumbItem>
                         </Breadcrumb>
                     </Row>
-                    <Row className='pb-4'>
+                    <Row>
                         {cloth}
-                        <Col md={3} className='ml-auto mt-4'>
-                            <Button variant="dark">
-                                Check Out <span className="ml-2">&#8594;</span>
-                            </Button>
-                        </Col>
                     </Row>
+                    <div className='d-flex justify-content-end pb-4'>
+                        <Button variant="dark">
+                            Check Out <span className="ml-2">&#8594;</span>
+                        </Button>
+                    </div>
                 </Container>
             </div>
         );
@@ -99,10 +106,8 @@ const Carts = (props) => {
     
     else {
         return(
-            <div className="container">
-                <div className="row">
-                    <h4>You have no favorites</h4>
-                </div>
+            <div className="d-flex justify-content-center" style={{backgroundColor: "#EDEADF"}}>
+                <h4 className='p-5'>Your Cart is Empty</h4>
             </div>
         )
     }

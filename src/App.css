@@ -1,4 +1,8 @@
 /*Starts Here*/
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .about-container {
   max-width: 90%;
 }
@@ -7,9 +11,11 @@
   max-width: 85%;
 }
 
-.nav-container {
-  max-width: 88.5%;
-  background-color: transparent;
+@media (min-width: 640px) {
+  .nav-container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 1368px) {
@@ -175,24 +181,31 @@
   background-color: #38332d;
 }
 
-/* @media (min-width: 1279px) {
-  .headerback {
-    height: 100vh;
-  }
-} */
-
 .headerimg {
   object-fit: center;
 }
 
 .nav-c {
-  width: 85%;
+  width: 88%;
   position: relative;
-  z-index: 9999;
+  z-index: 2;
 }
 
 .headerdec {
+  font-weight: 500;
+  font-size: clamp(14px, 3vw, 56px);
   text-align: left;
+}
+
+.modal-back {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
 }
 
 .size {

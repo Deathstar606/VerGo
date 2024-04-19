@@ -203,7 +203,7 @@ export const postCart = (clothId, image, size, color) => async (dispatch) => {
     // Add new cart item if it's not already in the array
     const updatedCart = [...currentCart, { clothid: clothId, image: image, size: size, color: color }];
     await updateDoc(cartsDoc.ref, { cart: updatedCart });
-    dispatch(addCart([{ clothid: clothId, image: image, size: size, color: color }]));
+    dispatch(addCart({ clothid: clothId, image: image, size: size, color: color }));
     console.log('New cart item added.');
   } else {
     console.log('Cart item already exists.');

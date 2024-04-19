@@ -17,7 +17,7 @@ import "swiper/css";
 
 const HeroSec = () => {
     return (
-        <div className="headerback">
+        <div className="headerback" style={{overflow: "hidden"}}>
             <Row className="m-0 g-0">
                 <MediaQuery minWidth={639}>
                     <Col md={6} xs={12} className="d-flex justify-content-center align-items-center px-0">

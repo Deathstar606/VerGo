@@ -128,7 +128,7 @@
 }
 
 .zoom-in {
-  animation: zoomIn 5.5s ease-in-out infinite;
+  animation: zoomIn 5.9s ease-in-out infinite;
 }
 
 @keyframes zoomIn {

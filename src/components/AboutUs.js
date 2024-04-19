@@ -17,7 +17,7 @@ const AboutUs = () => {
             <div className='mt-4'>
               <section className='scroll-rev'>
                   <h4>
-                    <span>
+                    <span style={{fontWeight: "500", fontSize: "clamp(14px, 2vw, 34px)"}}>
                       Elevate your style effortlessly with our curated collection of clothing, accessories, and footwear.
                       Stay ahead of the fashion curve with our trend forecasts and style guides.
                       Join our community and discover endless inspiration for expressing your unique identity.

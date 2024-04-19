@@ -88,7 +88,7 @@ function NewArr() {
                         <MediaQuery maxWidth={638}>
                             <Swiper
                                 slidesPerView={2}
-                                spaceBetween={20} // Added padding between slides
+                                spaceBetween={5} // Added padding between slides
                                 modules={[Navigation]}
                                 navigation={{
                                     nextEl: '.swiper-button-next', // Show navigation only on the right side
@@ -100,7 +100,7 @@ function NewArr() {
                                         className="headerimg"
                                         src={newar1}
                                         alt="Ad"
-                                        style={{ height: '35vh' }} // Adjust the height value as needed
+                                        style={{ height: '35vh', objectFit: "cover"}} // Adjust the height value as needed
                                     />
                                     <h3>Men's Casual Wear</h3>
                                     <p>Express Your Identity</p>
@@ -110,7 +110,7 @@ function NewArr() {
                                         className="headerimg"
                                         src={newar2}
                                         alt="Ad"
-                                        style={{ height: '35vh' }} // Adjust the height value as needed
+                                        style={{ height: '35vh', objectFit: "cover" }} // Adjust the height value as needed
                                     />
                                     <h3>Women's Glamour Wear</h3>
                                     <p>Dress To Impress</p>
@@ -120,7 +120,7 @@ function NewArr() {
                                         className="headerimg"
                                         src={newar3}
                                         alt="Ad"
-                                        style={{ height: '35vh' }} // Adjust the height value as needed
+                                        style={{ height: '35vh', objectFit: "cover" }} // Adjust the height value as needed
                                     />
                                     <h3>Sports Wear</h3>
                                     <p>Give Your 100%</p>
