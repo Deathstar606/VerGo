@@ -298,7 +298,7 @@ export const googleLogin = () => async (dispatch) => {
       localStorage.setItem('user', JSON.stringify(user));
   
       // Dispatch the success action
-      //dispatch(fetchFavorites());
+      dispatch(fetchCarts());
       dispatch(receiveLogin(user));
     } catch (error) {
       dispatch(loginError(error.message));
