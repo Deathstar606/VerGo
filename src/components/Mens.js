@@ -18,6 +18,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay } from 'swiper/modules';
 import "./card.css"
 import MediaQuery from 'react-responsive';
+import { motion } from 'framer-motion';
 
 const Mens = (props) => {
 
@@ -54,64 +55,68 @@ const Mens = (props) => {
           });
 
         return (
-            <div style={{backgroundColor: "#EDEADF"}}>
-                <Container style={{maxWidth: "85%"}}>
-                    <div className="headerback">
-                    <Row className="m-0 g-0">
-                        <Col md={4} xs={12} className="d-flex justify-content-center align-items-center px-0">
-                            <h1 className='font-weight-bold text-center' style={{padding: "20px 20px 20px 20px", color: "#9a9a9a"}}>
-                                For Him... Curated Menswear
-                            </h1>
-                        </Col>
-                        <Col md={8} xs={12} className="px-0">
-                            <MediaQuery minWidth={639}>
-                                <Swiper
-                                    autoplay={{
-                                        delay: 5850,
-                                        disableOnInteraction: false,
-                                    }}
-                                    effect="fade"
-                                    fadeEffect={{ crossFade: true }}
-                                    onSwiper={setSwiper}
-                                    modules={[EffectFade, Autoplay]}
-                                    speed={850}
-                                    >
-                                    <SwiperSlide><CardImg className='zoom-in' src={men1}/></SwiperSlide>
-                                    <SwiperSlide><CardImg className='zoom-in' src={men2}/></SwiperSlide>
-                                    <SwiperSlide><CardImg className='zoom-in' src={men3}/></SwiperSlide>
-                                </Swiper>
-                            </MediaQuery>
-                            <MediaQuery maxWidth={638}>
-                                <Swiper
-                                    autoplay={{
-                                        delay: 4800,
-                                        disableOnInteraction: false,
-                                    }}
-                                    effect="fade"
-                                    fadeEffect={{ crossFade: true }}
-                                    onSwiper={setSwiper}
-                                    modules={[EffectFade, Autoplay]}
-                                    speed={1000}
-                                    >
-                                    <SwiperSlide><CardImg className='zoom-in' src={men4}/></SwiperSlide>
-                                    <SwiperSlide><CardImg className='zoom-in' src={men5}/></SwiperSlide>
-                                    <SwiperSlide><CardImg className='zoom-in' src={men6}/></SwiperSlide>
-                                </Swiper>
-                            </MediaQuery>
-                        </Col>
-                    </Row>
-                    </div>
-                    <Row>
-                    <Breadcrumb className="pl-3 pt-3">
-                        <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Men's</BreadcrumbItem>
-                    </Breadcrumb>
-                    </Row>
-                    <Row>
-                        {catdes}
-                    </Row>
-                </Container>
-            </div>
+            <motion.div
+            transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+            exit= {{x: -1000, opacity: 0}}>
+                <div style={{backgroundColor: "#EDEADF"}}>
+                    <Container style={{maxWidth: "85%"}}>
+                        <div className="headerback">
+                        <Row className="m-0 g-0">
+                            <Col md={4} xs={12} className="d-flex justify-content-center align-items-center px-0">
+                                <h1 className='font-weight-bold text-center' style={{padding: "20px 20px 20px 20px", color: "#9a9a9a"}}>
+                                    For Him... Curated Menswear
+                                </h1>
+                            </Col>
+                            <Col md={8} xs={12} className="px-0">
+                                <MediaQuery minWidth={639}>
+                                    <Swiper
+                                        autoplay={{
+                                            delay: 5850,
+                                            disableOnInteraction: false,
+                                        }}
+                                        effect="fade"
+                                        fadeEffect={{ crossFade: true }}
+                                        onSwiper={setSwiper}
+                                        modules={[EffectFade, Autoplay]}
+                                        speed={850}
+                                        >
+                                        <SwiperSlide><CardImg className='zoom-in' src={men1}/></SwiperSlide>
+                                        <SwiperSlide><CardImg className='zoom-in' src={men2}/></SwiperSlide>
+                                        <SwiperSlide><CardImg className='zoom-in' src={men3}/></SwiperSlide>
+                                    </Swiper>
+                                </MediaQuery>
+                                <MediaQuery maxWidth={638}>
+                                    <Swiper
+                                        autoplay={{
+                                            delay: 4800,
+                                            disableOnInteraction: false,
+                                        }}
+                                        effect="fade"
+                                        fadeEffect={{ crossFade: true }}
+                                        onSwiper={setSwiper}
+                                        modules={[EffectFade, Autoplay]}
+                                        speed={1000}
+                                        >
+                                        <SwiperSlide><CardImg className='zoom-in' src={men4}/></SwiperSlide>
+                                        <SwiperSlide><CardImg className='zoom-in' src={men5}/></SwiperSlide>
+                                        <SwiperSlide><CardImg className='zoom-in' src={men6}/></SwiperSlide>
+                                    </Swiper>
+                                </MediaQuery>
+                            </Col>
+                        </Row>
+                        </div>
+                        <Row>
+                        <Breadcrumb className="pl-3 pt-3">
+                            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>Men's</BreadcrumbItem>
+                        </Breadcrumb>
+                        </Row>
+                        <Row>
+                            {catdes}
+                        </Row>
+                    </Container>
+                </div>
+            </motion.div>
         )
     }
 }

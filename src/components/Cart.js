@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Col, Breadcrumb, BreadcrumbItem, Button, CardImg, Row, Container, Dropdown, DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { motion } from 'framer-motion';
 
 function RenderMenuItem ({child, deleteCart}) {
 
@@ -83,24 +84,28 @@ const Carts = (props) => {
         })
 
         return(
-            <div style={{backgroundColor: "#EDEADF"}}>
-                <Container className='lg-container'>
-                    <Row className='pt-2'>
-                        <Breadcrumb>
-                            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>Cart</BreadcrumbItem>
-                        </Breadcrumb>
-                    </Row>
-                    <Row>
-                        {cloth}
-                    </Row>
-                    <div className='d-flex justify-content-end pb-4'>
-                        <Button variant="dark">
-                            Check Out <span className="ml-2">&#8594;</span>
-                        </Button>
-                    </div>
-                </Container>
-            </div>
+            <motion.div
+            transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+            exit= {{x: -1000, opacity: 0}}>
+                <div style={{backgroundColor: "#EDEADF"}}>
+                    <Container className='lg-container'>
+                        <Row className='pt-2'>
+                            <Breadcrumb>
+                                <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>Cart</BreadcrumbItem>
+                            </Breadcrumb>
+                        </Row>
+                        <Row>
+                            {cloth}
+                        </Row>
+                        <div className='d-flex justify-content-end pb-4'>
+                            <Button variant="dark">
+                                Check Out <span className="ml-2">&#8594;</span>
+                            </Button>
+                        </div>
+                    </Container>
+                </div>
+            </motion.div>
         );
     }
     

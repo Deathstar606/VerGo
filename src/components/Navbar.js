@@ -69,7 +69,7 @@ export default class Example extends React.Component {
                     <div>Appeareal</div>
                     <ul className='nav-sub' style={{ listStyleType: 'none' }}>
                       <li>Shirts</li>
-                      <li>Pants</li>
+                      <RouterLink to="/pants"><li>Pants</li></RouterLink>
                       <li>Hoodies</li>
                     </ul>
                   </NavItem>

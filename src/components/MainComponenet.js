@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import HeroSec from './HeroSec';
 import NewArr from "./NewArrival";
 import Deats from './Details';
@@ -10,15 +10,14 @@ import AboutUs from "./AboutUs";
 import Category from "./Category";
 import Footer from "./Footer";
 import { Container, Row, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Example from './Navbar';
-import { Link, Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Link, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { googleLogin, loginUser, logoutUser, fetchDeals, fetchClothes, fetchFeats,
           fetchReviews, postReview, fetchCarts, postCart, deleteCart } from '../Redux/ActionCreators';
-import './transitions.css'; // Import your CSS file for transitions
+import { AnimatePresence, motion } from 'framer-motion';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     deals: state.deals,
@@ -29,7 +28,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({    //method defination
+const mapDispatchToProps = (dispatch) => ({    //method defination
   fetchDeals: () => {dispatch(fetchDeals())},
   fetchFeats: () => {dispatch(fetchFeats())},
   fetchClothes: () => {dispatch(fetchClothes())},
@@ -43,107 +42,136 @@ const mapDispatchToProps = dispatch => ({    //method defination
   logoutUser: () => dispatch(logoutUser())
 });
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Main = (props) => {
+  
+  const location = useLocation();
 
-  componentDidMount() {
-    this.props.fetchDeals();
-    this.props.fetchFeats();
-    this.props.fetchClothes();
-    this.props.fetchReviews();
-    this.props.fetchCarts();
-  }
+  useEffect(() => {
+    props.fetchDeals();
+    props.fetchFeats();
+    props.fetchClothes();
+    props.fetchReviews();
+    props.fetchCarts();
+  }, []);
 
-  render() {
-
-    const Pants = () => {
-      if (this.props.clothes.clothes.length > 0) {
-        const pantsArray = this.props.clothes.clothes.filter(element => element.category === "pant");
-        const parr = pantsArray.map(element => (
-          <Catlist key={element._id} child={element} />
-        ));
+  const Pants = () => {
+    if (props.clothes.clothes.length > 0) {
+      const pantsArray = props.clothes.clothes.filter(
+        (element) => element.category === 'pant'
+      );
+      const parr = pantsArray.map((element) => (
+        <Catlist key={element._id} child={element} />
+      ));
       return (
-        <Container style={{maxWidth: "85%"}}>
-          <Row>
-            <Breadcrumb className="pl-3 pt-3">
-                <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+        <motion.div
+        transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+        exit= {{x: -1000, opacity: 0}}>
+          <Container style={{ maxWidth: '85%' }}>
+            <Row>
+              <Breadcrumb className="pl-3 pt-3">
+                <BreadcrumbItem>
+                  <Link to="/home">Home</Link>
+                </BreadcrumbItem>
                 <BreadcrumbItem active>Pants</BreadcrumbItem>
-            </Breadcrumb>
-          </Row>
-          <Row>
-            {parr}
-          </Row>
-        </Container>
-      )
-      }
+              </Breadcrumb>
+            </Row>
+            <Row>{parr}</Row>
+          </Container>
+        </motion.div>
+      );
     }
-    
-    const ClothesId = ({match}) => {
-        return(
-        <div style={{backgroundColor: "#EDEADF"}}>
-          <Deats clothes={this.props.clothes.clothes.filter((cloth) => cloth._id === match.params.clothId)[0]}
-            reviews={this.props.reviews.reviews.filter((rev) => rev.cloth === match.params.clothId)}
-            similar = {this.props.clothes}
-            isLoading={this.props.clothes.isLoading}
-            errMess={this.props.clothes.errMess}
-            postReview={this.props.postReview}
-            postCart={this.props.postCart}/>
-        </div>
-        )
-    }
+  };
 
-    const Home = () => {
-      if (this.props.feats.feats.length > 0 && this.props.clothes.clothes.length > 0) {
-        return (
-          <>
-            <HeroSec/>
-            <div style={{backgroundColor: "#EDEADF"}}>
-              <NewArr/>
-              <RenderItem feats={this.props.feats} clothes={this.props.clothes}/>
-              <AboutUs/>
-              <Category/>
-            </div>
-          </>
-        )
-      }
-    }
-
-    const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-      this.props.auth.isAuthenticated
-        ? <Component {...props} />
-        : <Redirect to={{
-            pathname: '/home',
-            state: { from: props.location }
-          }} />
-    )} />
-  );
-
+  const ClothesId = () => {
+    const match = useLocation();
     return (
-      <>
-        <Example auth={this.props.auth} 
-          loginUser={this.props.loginUser} 
-          logoutUser={this.props.logoutUser}
-          googleLogin={this.props.googleLogin}/>
-          
-        <TransitionGroup>
-        <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
-          <Switch>
-            <Route path="/home" component={Home} />
-            <Route path="/pants" component={Pants}/>
-            <Route path="/mens" component={() => <Mens clothes={this.props.clothes}/>}/>
-            <PrivateRoute exact path="/cart" component={() => <Carts cart={this.props.cart} deleteCart={this.props.deleteCart}/>} />
-            <Route exact path="/:clothId" component={ClothesId} />
-            <Redirect to="/home" />
-          </Switch>
-        </CSSTransition>
-      </TransitionGroup>
-      <Footer/>
-      </>
+      <motion.div
+      transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+      exit= {{x: -1000, opacity: 0}}>
+        <div style={{ backgroundColor: '#EDEADF' }}>
+          <Deats
+            clothes={
+              props.clothes.clothes.filter(
+                (cloth) => cloth._id === match.pathname.split('/')[1]
+              )[0]
+            }
+            reviews={
+              props.reviews.reviews.filter(
+                (rev) => rev.cloth === match.pathname.split('/')[1]
+              )
+            }
+            similar={props.clothes}
+            isLoading={props.clothes.isLoading}
+            errMess={props.clothes.errMess}
+            postReview={props.postReview}
+            postCart={props.postCart}
+          />
+        </div>
+      </motion.div>
     );
-  }
-}
+  };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+  const Home = () => {
+    if (
+      props.feats.feats.length > 0 &&
+      props.clothes.clothes.length > 0
+    ) {
+      return (
+        <>
+          <motion.div
+            transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+            exit= {{x: -1000, opacity: 0}}>
+            <HeroSec />
+              <div style={{ backgroundColor: '#EDEADF' }}>
+                <NewArr />
+                <RenderItem
+                  feats={props.feats}
+                  clothes={props.clothes}
+                />
+                <AboutUs />
+                <Category />
+              </div>
+          </motion.div>
+        </>
+      );
+    }
+  };
+
+  return (
+    <>
+      <Example
+        auth={props.auth}
+        loginUser={props.loginUser}
+        logoutUser={props.logoutUser}
+        googleLogin={props.googleLogin}
+      />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.key}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/pants" element={<Pants />} />
+          <Route
+            path="/mens"
+            element={<Mens clothes={props.clothes} />}
+          />
+          <Route
+            path="/cart"
+            element={
+              <Carts
+                cart={props.cart}
+                deleteCart={props.deleteCart}
+              />
+            }
+          />
+          <Route path="/:clothId" element={<ClothesId />} />
+          <Route
+            path="*"
+            element={<Navigate to="/home" replace />}
+          />
+        </Routes>
+      </AnimatePresence>
+      <Footer />
+    </>
+  );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
