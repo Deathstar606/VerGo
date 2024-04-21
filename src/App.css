@@ -193,7 +193,7 @@ body {
 
 .headerdec {
   font-weight: 500;
-  font-size: clamp(14px, 3vw, 56px);
+  font-size: clamp(30px, 3vw, 56px);
   text-align: left;
 }
 
