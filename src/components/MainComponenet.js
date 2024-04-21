@@ -64,8 +64,11 @@ const Main = (props) => {
       ));
       return (
         <motion.div
-        transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
-        exit= {{x: -1000, opacity: 0}}>
+          style={{ backgroundColor: '#EDEADF' }}
+          transition={{duration: 0.5, type: "tween", ease: "easeIn"}}
+          initial = {{x: 1000, opacity: 0}}
+          animate= {{x: 0, opacity: 1}}
+          exit= {{x: -1000, opacity: 0}}>
           <Container style={{ maxWidth: '85%' }}>
             <Row>
               <Breadcrumb className="pl-3 pt-3">
@@ -86,8 +89,10 @@ const Main = (props) => {
     const match = useLocation();
     return (
       <motion.div
-      transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
-      exit= {{x: -1000, opacity: 0}}>
+        transition={{duration: 0.5, type: "tween", ease: "easeIn"}}
+        initial = {{x: 1000, opacity: 0}}
+        animate= {{x: 0, opacity: 1}}
+        exit= {{x: -1000, opacity: 0}}>
         <div style={{ backgroundColor: '#EDEADF' }}>
           <Deats
             clothes={
@@ -119,7 +124,9 @@ const Main = (props) => {
       return (
         <>
           <motion.div
-            transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+            transition={{duration: 0.5, type: "tween", ease: "easeIn"}}
+            initial = {{x: 1000, opacity: 0}}
+            animate= {{x: 0, opacity: 1}}
             exit= {{x: -1000, opacity: 0}}>
             <HeroSec />
               <div style={{ backgroundColor: '#EDEADF' }}>

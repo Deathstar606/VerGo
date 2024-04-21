@@ -160,7 +160,7 @@ export default class Example extends React.Component {
                       animate={{ opacity: 1, y: 0}}
                       exit={{ opacity: 0, y: -70}}>
                         <Container className='d-flex justify-content-center' style={{position: "absolute"}}>
-                            <Col md={5} xs={12} className="p-4" style={{borderRadius: "20px", backgroundColor: "whitesmoke"}}>
+                            <Col md={5} xs={12} className="p-4" style={{borderRadius: "20px", backgroundColor: '#EDEADF'}}>
                               <h2 className="text-center mb-4">Login</h2>
                               <Form onSubmit={this.handleLogin}>
                               <FormGroup>

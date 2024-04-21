@@ -85,7 +85,9 @@ const Carts = (props) => {
 
         return(
             <motion.div
-            transition={{delay: 0.2, duration: 1, type: "tween", ease: "easeIn"}}
+            transition={{duration: 0.5, type: "tween", ease: "easeIn"}}
+            initial = {{x: 1000, opacity: 0}}
+            animate= {{x: 0, opacity: 1}}
             exit= {{x: -1000, opacity: 0}}>
                 <div style={{backgroundColor: "#EDEADF"}}>
                     <Container className='lg-container'>
