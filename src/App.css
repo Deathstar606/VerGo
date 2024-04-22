@@ -156,27 +156,6 @@ body {
   left: 10%
 }
 
-.scroll-rev h4 span {
-  color: hsla(0, 9%, 33%, 0.3);
-  background-clip: text;
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
-  background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 0));
-  animation: scroll-rev linear forwards;
-  animation-timeline: view();
-}
-
-.scroll-rev h4 span {
-  animation-range-start: cover 15vh;
-  animation-range-end: cover 70vh;
-}
-
-@keyframes scroll-rev {
-  to {
-    background-size: 100% 100%;
-  }
-}
-
 .headerback {
   background-color: #38332d;
 }

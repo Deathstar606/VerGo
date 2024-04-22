@@ -6,7 +6,7 @@ import Burger from './Burger';
 import MediaQuery from 'react-responsive';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
-import { FaGoogle, FaTimes, FaUser, FaShoppingBag, FaSignInAlt } from 'react-icons/fa';
+import { FaGoogle, FaTimes, FaUser, FaShoppingBag } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default class Example extends React.Component {

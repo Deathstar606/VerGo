@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 function Footer() {
   return (
@@ -46,13 +47,13 @@ function Footer() {
                 </Col>
                 <ul className="fa-ul" style={{ listStyleType: 'none', fontSize: '24px', display: 'flex' }}>
                     <li className='mb-4' style={{ marginRight: '20px' }}>
-                        <i className="fa fa-facebook-official fa-light fa-inverse"></i>
+                        <FaFacebook color="whitesmoke"/>
                     </li>
                     <li className='mb-4' style={{ marginRight: '20px' }}>
-                        <i className="fa fa-twitter-square fa-light fa-inverse"></i>
+                        <FaInstagram color="whitesmoke"/>
                     </li>
                     <li className='mb-4'>
-                        <i className="fa fa-instagram fa-light fa-inverse"></i>
+                        <FaTwitter color="whitesmoke"/>
                     </li>
                 </ul>
             </Row>
