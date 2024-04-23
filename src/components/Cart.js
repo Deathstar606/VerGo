@@ -3,6 +3,7 @@ import { Col, Breadcrumb, BreadcrumbItem, Button, CardImg, Row, Container, Dropd
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { motion,AnimatePresence } from 'framer-motion';
+import { FaTimes } from 'react-icons/fa';
 
 function RenderMenuItem ({ child, deleteCart, quantity, handleSelect }) {
 
@@ -51,14 +52,20 @@ function RenderMenuItem ({ child, deleteCart, quantity, handleSelect }) {
 function Order ({child, quantity}) {
     return(
         <>
-            <Col md={2} className='p-2'>
-                <CardImg style={{borderRadius: "15px"}} src={child.image}/>
-            </Col>
-            <Col md={6}>
-                <div>Description</div>
-                <div>{child.price}</div>
-                <div>{quantity}</div>
-            </Col>
+            <Row className='border-bottom'>
+                <Col md={2} className='p-2'>
+                    <CardImg style={{borderRadius: "15px"}} src={child.image}/>
+                </Col>
+                <Col md={7} className='d-flex align-items-center'>
+                    <div>
+                        <div>Name</div>
+                        <div className='d-flex'>Size: {child.size}{" ---- "}Color: {child.color}</div>
+                    </div>
+                </Col>
+                <Col md={3} className='d-flex align-items-center justify-content-end'>
+                    <div>$ {child.price} * {quantity}</div>
+                </Col>
+            </Row>
         </>
     )
 }
@@ -156,15 +163,16 @@ const Carts = (props) => {
                         val = quantityMap[element.clothid] * element.price
                     }
                 });
+
                 return (
-                    <Row>
-                        <Col md={1}>
+                    <Row className='d-flex p-2 mr-1'>
+                        <div>
                             <input
                                 type="checkbox"
                                 onChange={(e) => handleCheckboxChange(e, val)}
                             />
-                        </Col>
-                        <Col md={8}>
+                        </div>
+                        <Col md={11}>
                             <Order child={element} quantity={quantityMap[element.clothid]}/>
                         </Col>
                     </Row>
@@ -205,10 +213,15 @@ const Carts = (props) => {
                                     initial={{ opacity: 0, y: -70}}
                                     animate={{ opacity: 1, y: 0}}
                                     exit={{ opacity: 0, y: -70}}>
-                                    <Container style={{position: "absolute", backgroundColor: "whitesmoke"}}>
+                                    <Container style={{position: "absolute", backgroundColor: "whitesmoke", width: "40%", borderRadius: "20px"}}>
                                         {prod}
-                                        <Row><Button onClick={handleHide}>Close</Button></Row>
-                                        <div>Total: ${total.toFixed(2)}</div>
+                                        <Row className='pb-3'>
+                                            <Col md={9}><Button className='m-2'>Proceed To Pay</Button></Col>
+                                            <Col md={3}>
+                                                <div>Total: ${total.toFixed(2)}</div>
+                                            </Col>
+                                            <FaTimes onClick={handleHide} style={{position: "absolute", top: "10", right: "10"}}/>
+                                        </Row>
                                     </Container>
                                     </motion.div>
                                 </motion.div>
