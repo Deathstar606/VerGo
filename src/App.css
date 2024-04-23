@@ -270,3 +270,16 @@ body {
   background-color: #ffffff; /* Change the color of the active bullet */
   opacity: 1; /* Adjust the opacity of the active bullet */
 }
+
+.swiper-button-next {
+  top: 45%;
+  color: wheat;
+  padding-right: 5px;
+}
+
+@media (max-width: 639px) {
+  .swiper-button-next {
+    top: 38%;
+    scale: 0.7;
+  }
+}

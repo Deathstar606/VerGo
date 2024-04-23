@@ -86,7 +86,7 @@ const Deats = (props) => {
     else if (props.clothes != null) {
 
         const handleAddToCart = () => {
-            props.postCart(props.clothes._id, props.clothes.images[shirtColor][0], selectedSize, shirtColor)
+            props.postCart(props.clothes._id, props.clothes.images[shirtColor][0], selectedSize, shirtColor, props.clothes.price)
             alert("Added To Cart")
         };
 

@@ -168,7 +168,7 @@ export const fetchCarts = () => async (dispatch) => {
 };
 
 
-export const postCart = (clothId, image, size, color) => async (dispatch) => {
+export const postCart = (clothId, image, size, color, price) => async (dispatch) => {
   if (!auth.currentUser) {
     console.log('No user logged in!');
     return;
@@ -184,7 +184,7 @@ export const postCart = (clothId, image, size, color) => async (dispatch) => {
     // Create a new cart document for the user if it doesn't exist
     const newCartDoc = {
       user: auth.currentUser.uid,
-      cart: [{ clothid: clothId, image: image, size: size, color: color }]
+      cart: [{ clothid: clothId, image: image, size: size, color: color, price: price }]
     };
     await addDoc(cartsCollection, newCartDoc);
     dispatch(addCart(newCartDoc.cart));
@@ -201,9 +201,9 @@ export const postCart = (clothId, image, size, color) => async (dispatch) => {
 
   if (cartItemIndex === -1) {
     // Add new cart item if it's not already in the array
-    const updatedCart = [...currentCart, { clothid: clothId, image: image, size: size, color: color }];
+    const updatedCart = [...currentCart, { clothid: clothId, image: image, size: size, color: color, price: price }];
     await updateDoc(cartsDoc.ref, { cart: updatedCart });
-    dispatch(addCart({ clothid: clothId, image: image, size: size, color: color }));
+    dispatch(addCart({ clothid: clothId, image: image, size: size, color: color, price: price }));
     console.log('New cart item added.');
   } else {
     console.log('Cart item already exists.');

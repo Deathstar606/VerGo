@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => ({    //method defination
   fetchReviews: () => dispatch(fetchReviews()),
   postReview: (clothId, rating, comment) => dispatch(postReview(clothId, rating, comment)),
   fetchCarts: () => {dispatch(fetchCarts())},
-  postCart: (clothId, image, size, color) => dispatch(postCart(clothId, image, size, color)),
+  postCart: (clothId, image, size, color, price) => dispatch(postCart(clothId, image, size, color, price)),
   deleteCart: (clothId) => {dispatch(deleteCart(clothId))},
   googleLogin: () => dispatch(googleLogin()),
   loginUser: (creds) => dispatch(loginUser(creds)),

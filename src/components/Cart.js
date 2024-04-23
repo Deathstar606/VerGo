@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Col, Breadcrumb, BreadcrumbItem, Button, CardImg, Row, Container, Dropdown, DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import { motion } from 'framer-motion';
+import { motion,AnimatePresence } from 'framer-motion';
 
-function RenderMenuItem ({child, deleteCart}) {
-
-    const [quantity, setQuantity] = useState(1);
-
-    const handleSelect = (eventKey) => {
-      setQuantity(parseInt(eventKey));
-    };
+function RenderMenuItem ({ child, deleteCart, quantity, handleSelect }) {
 
    return (
             <>
@@ -30,17 +24,17 @@ function RenderMenuItem ({child, deleteCart}) {
                         <Link to={`/${child.clothid}`}>
                             <h4>Name</h4>
                         </Link>
-                        <h5 className="text-muted">Price</h5>
+                        <h5 className="text-muted">{child.price}<span>$</span></h5>
                         <p>
                             {child.size}
                             <span className="ml-2">{child.color}</span>
                         </p>
                         <DropdownButton
-                            id="quantity-dropdown"
+                            id={`quantity-dropdown-${child.clothid}`} // Use a unique ID for each dropdown
                             title={`Quantity: ${quantity}`}
-                            onSelect={handleSelect}
+                            onSelect={handleSelect} // Pass the event key to handleSelect
                             variant="outline-dark"
-                        >
+                            >
                             <Dropdown.Item eventKey="1">1</Dropdown.Item>
                             <Dropdown.Item eventKey="2">2</Dropdown.Item>
                             <Dropdown.Item eventKey="3">3</Dropdown.Item>
@@ -54,7 +48,70 @@ function RenderMenuItem ({child, deleteCart}) {
     );
 }
 
+function Order ({child, quantity}) {
+    return(
+        <>
+            <Col md={2} className='p-2'>
+                <CardImg style={{borderRadius: "15px"}} src={child.image}/>
+            </Col>
+            <Col md={6}>
+                <div>Description</div>
+                <div>{child.price}</div>
+                <div>{quantity}</div>
+            </Col>
+        </>
+    )
+}
+
 const Carts = (props) => {
+
+    const [modal, setModal] = useState(false);
+
+    const [quantityMap, setQuantityMap] = useState({});
+
+    const handleSelect = (eventKey, productId) => {
+        setQuantityMap((prevQuantityMap) => ({
+          ...prevQuantityMap,
+          [productId]: parseInt(eventKey),
+        }));
+      };
+
+    useEffect(() => {
+        if (props.cart.cart) {
+            const initialQuantityMap = {};
+            props.cart.cart.forEach((element) => {
+                initialQuantityMap[element.clothid] = 1;
+            });
+            setQuantityMap(initialQuantityMap);
+        }
+    }, [props.cart.cart]);
+
+    const handleShow = () => {
+        setModal(true);
+      };
+    
+      const handleHide = () => {
+        setModal(false);
+        setSelectedItems([]);
+      };
+
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const handleCheckboxChange = (event, price) => {
+        console.log(price)
+        if (event.target.checked) {
+          setSelectedItems([...selectedItems, price]);
+        } else {
+          const index = selectedItems.findIndex((p) => p === price);
+          if (index !== -1) {
+            const updatedItems = [...selectedItems];
+            updatedItems.splice(index, 1);
+            setSelectedItems(updatedItems);
+          }
+        }
+      };
+
+    const total = selectedItems.map(price => price).reduce((acc, price) => acc + price, 0);
 
     if (props.cart.isLoading) {
         return(
@@ -79,8 +136,40 @@ const Carts = (props) => {
         const cloth = props.cart.cart.map((element) => {
         
             return (
-                <RenderMenuItem child={element} deleteCart={props.deleteCart}/>
+                <RenderMenuItem
+                key={element.clothid} // Add a unique key prop
+                child={element}
+                deleteCart={props.deleteCart}
+                quantity={quantityMap[element.clothid] || 1} // Use the product ID as the key in quantityMap
+                handleSelect={(eventKey) => handleSelect(eventKey, element.clothid)} // Pass the product ID to handleSelect
+                />
             )
+        })
+
+        const prod = props.cart.cart.map((element) => {
+
+            let val = 0;
+            
+            if (Object.keys(quantityMap).length > 0) {
+                Object.keys(quantityMap).forEach((key) => {
+                    if (key == element.clothid) {
+                        val = quantityMap[element.clothid] * element.price
+                    }
+                });
+                return (
+                    <Row>
+                        <Col md={1}>
+                            <input
+                                type="checkbox"
+                                onChange={(e) => handleCheckboxChange(e, val)}
+                            />
+                        </Col>
+                        <Col md={8}>
+                            <Order child={element} quantity={quantityMap[element.clothid]}/>
+                        </Col>
+                    </Row>
+                )
+            }
         })
 
         return(
@@ -101,9 +190,30 @@ const Carts = (props) => {
                             {cloth}
                         </Row>
                         <div className='d-flex justify-content-end pb-4'>
-                            <Button variant="dark">
+                            <Button onClick={handleShow} variant="dark">
                                 Check Out <span className="ml-2">&#8594;</span>
                             </Button>
+                            <AnimatePresence>
+                                {modal && (
+                                <motion.div 
+                                className='modal-back'
+                                initial={{ opacity: 0}}
+                                animate={{ opacity: 1}}
+                                exit={{ opacity: 0}}>
+                                    <motion.div 
+                                    className='d-flex justify-content-center m-5'
+                                    initial={{ opacity: 0, y: -70}}
+                                    animate={{ opacity: 1, y: 0}}
+                                    exit={{ opacity: 0, y: -70}}>
+                                    <Container style={{position: "absolute", backgroundColor: "whitesmoke"}}>
+                                        {prod}
+                                        <Row><Button onClick={handleHide}>Close</Button></Row>
+                                        <div>Total: ${total.toFixed(2)}</div>
+                                    </Container>
+                                    </motion.div>
+                                </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     </Container>
                 </div>

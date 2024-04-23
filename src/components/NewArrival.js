@@ -48,7 +48,6 @@ function NewArr() {
                             modules={[Navigation]}
                             navigation={{
                                 nextEl: '.swiper-button-next', // Show navigation only on the right side
-                                prevEl: null,
                             }}
                             >
                                 <SwiperSlide>
