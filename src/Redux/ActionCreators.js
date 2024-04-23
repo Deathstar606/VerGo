@@ -90,7 +90,7 @@ export const fetchReviews = () => async (dispatch) => {
 
 export const postReview = (clothId, rating, review) => (dispatch) => {
   if (!auth.currentUser) {
-    console.log('No user logged in!');
+    alert('No user logged in!');
     return;
   }
 

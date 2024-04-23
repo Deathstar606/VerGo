@@ -53,10 +53,10 @@ function Order ({child, quantity}) {
     return(
         <>
             <Row className='border-bottom'>
-                <Col md={2} className='p-2'>
+                <Col md={2} xs={4} className='p-2'>
                     <CardImg style={{borderRadius: "15px"}} src={child.image}/>
                 </Col>
-                <Col md={7} className='d-flex align-items-center'>
+                <Col md={7} xs={6} className='d-flex align-items-center'>
                     <div>
                         <div>Name</div>
                         <div className='d-flex'>Size: {child.size}{" ---- "}Color: {child.color}</div>
@@ -118,7 +118,11 @@ const Carts = (props) => {
         }
       };
 
-    const total = selectedItems.map(price => price).reduce((acc, price) => acc + price, 0);
+const Pay = () => {
+    alert("Only Demo Application no Payment Method")
+}
+
+const total = selectedItems.map(price => price).reduce((acc, price) => acc + price, 0);
 
     if (props.cart.isLoading) {
         return(
@@ -213,12 +217,12 @@ const Carts = (props) => {
                                     initial={{ opacity: 0, y: -70}}
                                     animate={{ opacity: 1, y: 0}}
                                     exit={{ opacity: 0, y: -70}}>
-                                    <Container style={{position: "absolute", backgroundColor: "whitesmoke", width: "40%", borderRadius: "20px"}}>
+                                    <Container style={{position: "absolute", backgroundColor: "whitesmoke", width: "70%", borderRadius: "20px"}}>
                                         {prod}
                                         <Row className='pb-3'>
-                                            <Col md={9}><Button className='m-2'>Proceed To Pay</Button></Col>
-                                            <Col md={3}>
-                                                <div>Total: ${total.toFixed(2)}</div>
+                                            <Col md={8} xs={7}><Button onClick={Pay} className='m-2 btn-sm btn-dark'>Proceed To Pay</Button></Col>
+                                            <Col md={3} xs={3}>
+                                                <div className='mt-1 d-flex justify-content-end'>Total: ${total.toFixed(2)}</div>
                                             </Col>
                                             <FaTimes onClick={handleHide} style={{position: "absolute", top: "10", right: "10"}}/>
                                         </Row>
