@@ -4,12 +4,17 @@ import { useInView } from "framer-motion";
 import { Loading } from "./LoadingComponent";
 import { Link } from "react-router-dom";
 import "./card.css"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/navigation";
+import MediaQuery from "react-responsive";
 
 function Product({ child }) {
     return (
       <Col md={3}>
         <Section>
-          <div className="curd card-container">
+          <div className="curd">
             <Link to={`/${child._id}`}>
               <div className="pro-img-container">
                 <CardImg
@@ -76,18 +81,38 @@ const RenderItem = (props) => {
             let cloth = props.clothes.clothes.filter((cloth) => cloth._id === feat)[0];
             
             return (
-                <Product child={cloth}/>
+              <>
+                <MediaQuery minWidth={640}>
+                  <Product child={cloth}/>    
+                </MediaQuery>
+                <MediaQuery maxWidth={639}>
+                  <SwiperSlide>
+                    <Product child={cloth}/>
+                  </SwiperSlide>
+                </MediaQuery>
+              </>
             );
         });
 
     return(
             <>
             <Container className="lg-container mt-4">
-                <div>
+                <div className="d-flex justify-content-center m-5">
                     <h3 className="text-white bg-custom">Hot now 🔥</h3>
                 </div>
-                <Row className="mt-4 d-flex justify-content-center">
-                    {feats}             
+                <Row className="m-2 d-flex justify-content-center">
+                    <MediaQuery minWidth={640}>
+                      {feats}
+                    </MediaQuery>
+                    <MediaQuery maxWidth={639}>
+                        <Swiper
+                            slidesPerView={1}
+                            autoplay={{ delay: 3000, disableOnInteraction: false }}
+                            modules={[Autoplay]}
+                        >
+                            {feats}
+                        </Swiper>
+                    </MediaQuery>             
                 </Row>
             </Container>
             </>                   
