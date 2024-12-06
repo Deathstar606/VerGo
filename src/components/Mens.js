@@ -61,10 +61,8 @@ const Mens = (props) => {
             animate= {{x: 0, opacity: 1}}
             exit= {{x: -1000, opacity: 0}}>
                 <div style={{backgroundColor: "#EDEADF"}}>
-                    <Container style={{maxWidth: "85%"}}>
-                        <div className="headerback">
-                        <Row className="m-0 g-0">
-                            <Col md={4} xs={12} className="d-flex justify-content-center align-items-center px-0">
+                <Row className="m-0 g-0">
+                            <Col md={4} xs={12} className="d-flex justify-content-center align-items-center px-0 pt-5 pb-5" style={{backgroundColor: "#333333"}}>
                                 <h1 className='font-weight-bold text-center' style={{padding: "20px 20px 20px 20px", color: "#9a9a9a"}}>
                                     For Him... Curated Menswear
                                 </h1>
@@ -106,13 +104,13 @@ const Mens = (props) => {
                                 </MediaQuery>
                             </Col>
                         </Row>
-                        </div>
-                        <Row>
-                        <Breadcrumb className="pl-3 pt-3">
-                            <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>Men's</BreadcrumbItem>
-                        </Breadcrumb>
+                        <Row style={{display: "inline-block"}}>
+                            <Breadcrumb className="pl-3 pt-3">
+                                <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>Men's</BreadcrumbItem>
+                            </Breadcrumb>
                         </Row>
+                    <Container style={{maxWidth: "85%"}}>
                         <Row>
                             {catdes}
                         </Row>

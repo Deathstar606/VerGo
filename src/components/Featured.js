@@ -107,7 +107,7 @@ const RenderItem = (props) => {
                     <MediaQuery maxWidth={639}>
                         <Swiper
                             slidesPerView={1}
-                            autoplay={{ delay: 3000, disableOnInteraction: false }}
+                            autoplay={{ delay: 2000, disableOnInteraction: false }}
                             modules={[Autoplay]}
                         >
                             {feats}
