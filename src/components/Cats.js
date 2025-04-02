@@ -39,7 +39,7 @@ const Catlist = ({ child }) => {
   });
 
   return (
-    <Col md={3}>
+    <Col md={3} className='pb-3'>
       <Link to={`/${child._id}`}>
         <div className="cat-img-container">
           <CardImg

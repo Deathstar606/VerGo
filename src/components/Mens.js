@@ -16,7 +16,10 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import required modules
 import { EffectFade, Autoplay } from 'swiper/modules';
+import './DishBreadcrumb.css';
 import "./card.css"
+
+import { Breadcrumbs } from './Details';
 import MediaQuery from 'react-responsive';
 import { motion } from 'framer-motion';
 
@@ -104,12 +107,12 @@ const Mens = (props) => {
                                 </MediaQuery>
                             </Col>
                         </Row>
-                        <Row style={{display: "inline-block"}}>
-                            <Breadcrumb className="pl-3 pt-3">
-                                <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                                <BreadcrumbItem active>Men's</BreadcrumbItem>
-                            </Breadcrumb>
-                        </Row>
+                        <div style={{display: "inline-block", marginBottom: "10px", marginLeft: "10px"} }>
+                            <Breadcrumbs items={[
+                                { link: '/home', active: false },
+                                { name: "Home / Mens", link: '', active: true }
+                            ]} />
+                        </div>
                     <Container style={{maxWidth: "85%"}}>
                         <Row>
                             {catdes}

@@ -1,0 +1,26 @@
+/* Container for the breadcrumbs */
+.custom-breadcrumb {
+    padding: 10px; /* Padding around the breadcrumb items */
+    border: 1px solid #000; /* Border around the breadcrumb */
+    border-radius: 10px; /* Rounded corners */
+    display: flex; /* Flexbox layout for horizontal alignment */
+    align-items: center; /* Vertical alignment */
+}
+
+/* Individual breadcrumb items */
+.custom-breadcrumb-item {
+    margin-right: 10px; /* Space between breadcrumb items */
+    color: black
+}
+
+/* Links inside breadcrumb items */
+.custom-breadcrumb-item a {
+    color: #000; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Separator between breadcrumb items */
+.custom-breadcrumb-item + .custom-breadcrumb-item::before {
+    margin-right: 10px; /* Space after the separator */
+    color: #000; /* Separator color */
+}

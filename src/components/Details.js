@@ -1,11 +1,33 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Breadcrumb, BreadcrumbItem, CardImg, Button, ButtonGroup, Form, FormGroup, Input } from 'reactstrap';
+import { Container, Row, Col, CardImg, Button, ButtonGroup, Form, FormGroup, Input } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import Catlist from './Cats';
 import MediaQuery from 'react-responsive';
 import { Link } from "react-router-dom";
 import ReactStars from 'react-stars';
+import { FaAngleLeft } from 'react-icons/fa';
+import './DishBreadcrumb.css';
 import './details.css'
+
+export const Breadcrumbs = ({ items }) => {
+    return (
+        <div className="custom-breadcrumb mt-3 ml-2 mb-3">
+            {items.map((item, index) => (
+                <div key={index} className="custom-breadcrumb-item">
+                    {index === 0 ? (
+                        <Link to={item.link}>
+                            <span><FaAngleLeft color='black'/></span>
+                        </Link>
+                    ) : item.active ? (
+                        item.name
+                    ) : (
+                        <Link to={item.link}>{item.name}</Link>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+};
 
 function RenderRev ({reviews}) {
     return (
@@ -136,10 +158,10 @@ const Deats = (props) => {
         return (
             <Container className='lg-container'>
                 <Row>
-                    <Breadcrumb>
-                        <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>{props.clothes.name}</BreadcrumbItem>
-                    </Breadcrumb>
+                    <Breadcrumbs items={[
+                        { link: '/home', active: false },
+                        { name: props.clothes.name, link: '', active: true }
+                    ]} />
                 </Row>
                 <Row>
                     <MediaQuery minWidth={639}>

@@ -9,12 +9,13 @@ import RenderItem from './Featured';
 import AboutUs from "./AboutUs";
 import Category from "./Category";
 import Footer from "./Footer";
-import { Container, Row, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Example from './Navbar';
-import { Link, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { googleLogin, loginUser, logoutUser, fetchDeals, fetchClothes, fetchFeats,
           fetchReviews, postReview, fetchCarts, postCart, deleteCart } from '../Redux/ActionCreators';
+import { Breadcrumbs } from './Details';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const mapStateToProps = (state) => {
@@ -71,12 +72,12 @@ const Main = (props) => {
           exit= {{x: -1000, opacity: 0}}>
           <Container style={{ maxWidth: '85%' }}>
             <Row>
-              <Breadcrumb className="pl-3 pt-3">
-                <BreadcrumbItem>
-                  <Link to="/home">Home</Link>
-                </BreadcrumbItem>
-                <BreadcrumbItem active>Pants</BreadcrumbItem>
-              </Breadcrumb>
+                        <div style={{display: "inline-block", marginBottom: "10px", marginLeft: "10px"} }>
+                            <Breadcrumbs items={[
+                                { link: '/home', active: false },
+                                { name: "Home / Pants", link: '', active: true }
+                            ]} />
+                        </div>
             </Row>
             <Row>{parr}</Row>
           </Container>
