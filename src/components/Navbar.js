@@ -43,6 +43,7 @@ export default class Example extends React.Component {
   }
 
   handleLogout() {
+      console.log(this.props.auth.user.photoURL);
       this.props.logoutUser();
   }
 
@@ -55,7 +56,7 @@ export default class Example extends React.Component {
         <div className='d-flex justify-content-center' style={{backgroundColor: "#EDEADF"}}>
           <div className='nav-c pt-2 pb-2'>
             <Navbar light expand="md">
-              <NavbarBrand href="/" className='text-dark pr-4'>VerGo</NavbarBrand>
+              <NavbarBrand href="/" className='text-dark pr-4' style={{fontSize: "50px"}}>VerGo</NavbarBrand>
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav navbar>
                   <NavItem className='nav-ele'>

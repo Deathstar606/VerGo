@@ -1,6 +1,7 @@
 /*Starts Here*/
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Abel", system-ui;
+  font-weight: 400px;
 }
 
 .about-container {
@@ -89,7 +90,6 @@ body {
 }
 
 .hero-text {
-  font-family: 'DM Sans', sans-serif;
   text-align: center;
   color: #9a9a9a;
 }
