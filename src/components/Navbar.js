@@ -94,11 +94,11 @@ export default class Example extends React.Component {
                       <div>
                         <div className="navbar-text text-dark mr-1">   
                           <img
-                              src={this.props.auth.user?.photoURL || ""}
-                              alt={this.props.auth.user?.displayName || "User"}
-                              className="rounded-circle mr-2"
-                              style={{ width: '30px' }}
-                            />
+                            src={this.props.auth.user ? this.props.auth.user.photoURL || "" : ""}
+                            alt={this.props.auth.user ? this.props.auth.user.displayName || "User" : "User"}
+                            className="rounded-circle mr-2"
+                            style={{ width: "30px" }}
+                          />
                         Signout
                         </div>
                         <span onClick={this.handleLogout}>
