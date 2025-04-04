@@ -43,7 +43,6 @@ export default class Example extends React.Component {
   }
 
   handleLogout() {
-      console.log(this.props.auth.user.photoURL);
       this.props.logoutUser();
   }
 
@@ -93,7 +92,7 @@ export default class Example extends React.Component {
                       :
                       <div>
                         <div className="navbar-text text-dark mr-1">
-                          <p>PI NA</p>   
+                          <p>Image NA</p>   
 {/*                           <img
                             src={this.props.auth.user ? this.props.auth.user.photoURL || "" : ""}
                             alt={this.props.auth.user ? this.props.auth.user.displayName || "User" : "User"}
@@ -128,13 +127,14 @@ export default class Example extends React.Component {
                       :
                       <div>
                         <RouterLink to= "/cart"><FaShoppingBag className='mr-3'/></RouterLink>
-                        <div className="navbar-text text-dark mr-3">    
-                          <img
+                        <div className="navbar-text text-dark mr-3">   
+                          <p>Image NA</p>   
+{/*                           <img
                             src={this.props.auth.user.photoURL}
                             alt={this.props.auth.user.displayName}
                             className="rounded-circle mr-2"
                             style={{ width: '30px' }}
-                          />
+                          /> */}
                         </div>
                         <span onClick={this.handleLogout}>
                           <span className="fa fa-sign-out fa-lg"></span> Logout
