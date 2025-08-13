@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, CardImg, Button, ButtonGroup, Form, FormGroup, Input } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import Catlist from './Cats';
@@ -58,6 +58,10 @@ const Deats = (props) => {
     const [selectedSize, setSelectedSize] = useState(''); // State to keep track of selected shirt size
 
     const [fullscreenImage, setFullscreenImage] = useState("");
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleClick = (imageUrl) => {
         setFullscreenImage(imageUrl);
@@ -187,7 +191,7 @@ const Deats = (props) => {
                         )}
                     </MediaQuery>
                     <Col md={3}>
-                        <h4>{props.clothes.name}</h4>
+                        <h4 className='pt-2'>{props.clothes.name}</h4>
                         <h5 className='text-muted'>{props.clothes.price} $</h5>
                         <p>{props.clothes.description}</p>
                             <div className="mt-3 d-flex">

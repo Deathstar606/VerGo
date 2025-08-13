@@ -204,6 +204,7 @@ export const postCart = (clothId, image, size, color, price) => async (dispatch)
     const updatedCart = [...currentCart, { clothid: clothId, image: image, size: size, color: color, price: price }];
     await updateDoc(cartsDoc.ref, { cart: updatedCart });
     dispatch(addCart({ clothid: clothId, image: image, size: size, color: color, price: price }));
+    dispatch(fetchCarts());
     console.log('New cart item added.');
   } else {
     console.log('Cart item already exists.');

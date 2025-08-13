@@ -23,8 +23,8 @@ function Product({ child }) {
                 />
                 <div className="pro-img-overlay">
                   <div className="pro-img-text">
-                    <h4>Product Name</h4>
-                    <p>Description</p>
+                    <h4>{child.name}</h4>
+                    <p>Click For Description</p>
                   </div>
                 </div>
               </div>

@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 // Import Swiper styles
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 const HeroSec = () => {
     return (
@@ -24,7 +25,9 @@ const HeroSec = () => {
                         <div className="hero-text">
                             <h1 className="display-4 font-weight-bold">Where Style Meets Substance</h1>
                             <p className="lead">Explore our products and services.</p>
-                            <Button outline color="light">Shop Now</Button>
+                            <Link to="/mens" style={{ textDecoration: 'none' }}>
+                                <Button outline color="light">Shop Now</Button>
+                            </Link>
                         </div>
                     </Col>
                     <Col md={6} xs={12} className="px-0">

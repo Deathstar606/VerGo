@@ -23,12 +23,12 @@ const AboutUs = () => {
 
   const backgroundSizeDesk = useTransform(
     scrollYProgress,
-    [0.48, 0.69],
+    [0.54, 0.69],
     ['0% 100%', '100% 100%']
   );
   const backgroundSizePhn = useTransform(
     scrollYProgress,
-    [0.64, 0.75],
+    [0.57, 0.69],
     ['0% 100%', '100% 100%']
   );
 

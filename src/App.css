@@ -33,6 +33,7 @@ body {
 }
 
 .nav-ele:hover {
+  cursor: pointer;
   border-bottom: 3px solid black;
   .nav-sub {
     opacity: 1;

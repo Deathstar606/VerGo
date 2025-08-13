@@ -1,8 +1,26 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 
 function Footer() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const ensureHome = (e) => {
+        if (location.pathname !== "/home") {
+        e.preventDefault();
+        navigate("/home");
+        setTimeout(() => {
+            const element = document.getElementById("aboutus");
+            if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 1300);
+        }
+    };
+
   return (
     <div style={{backgroundColor: "#333333"}}>
         <Container style={{maxWidth: "85%"}}>
@@ -33,15 +51,28 @@ function Footer() {
                 <Col md={4}></Col>
                 <Col md={2} xs={6}>
                     <ul style={{ listStyleType: 'none' }} className='text-white'>
-                        <li className='mb-4'>Home</li>
-                        <li className='mb-4'>Category</li>
-                        <li className='mb-4'>Know Us</li>
+                        <Link to="/home">
+                            <li style={{color: "white"}} className='mb-4'>Home</li>
+                        </Link>
+                        <ScrollLink
+                            to="aboutus"
+                            spy={true}
+                            smooth={true}
+                            offset={-40}
+                            duration={500}
+                            onClick={ensureHome}
+                            style={{cursor: 'pointer'}}
+                        >
+                            About Us
+                        </ScrollLink>
                     </ul>
                 </Col>
                 <Col md={2} xs={6}>
                     <ul style={{ listStyleType: 'none' }} className='text-white'>
                         <li className='mb-4'>Shirts</li>
-                        <li className='mb-4'>Pants</li>
+                        <Link to="/pants">
+                            <li style={{color: "white"}} className='mb-4'>Pants</li>
+                        </Link>
                         <li className='mb-4'>Hoodies</li>
                     </ul>
                 </Col>

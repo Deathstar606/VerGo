@@ -14,6 +14,7 @@ import './video.css';
 import "swiper/css";
 import "swiper/css/navigation";
 import "./card.css"
+import { Link } from "react-router-dom";
 
 const VideoBackground = ({ videoSource, children }) => (
     <div className="video-container">
@@ -37,7 +38,7 @@ function NewArr() {
                 <Row className="mt-4">
                     <Col md={6} className="px-1 mb-3">
                         <VideoBackground videoSource={dem}>
-                            <h1>Vergo</h1>
+                            <h1>VerGo</h1>
                         </VideoBackground>
                     </Col>
                     <Col md={6} xs={12}>
@@ -51,14 +52,16 @@ function NewArr() {
                             }}
                             >
                                 <SwiperSlide>
-                                    <CardImg
-                                        className="headerimg"
-                                        src={newar1}
-                                        alt="Ad"
-                                        style={{ height: '55vh' }} // Adjust the height value as needed
-                                    />
-                                    <h3>Men's Casual Wear</h3>
-                                    <p>Express Your Identity</p>
+                                    <Link to="/mens" style={{ textDecoration: 'none' }}>
+                                        <CardImg
+                                            className="headerimg"
+                                            src={newar1}
+                                            alt="Ad"
+                                            style={{ height: '55vh' }} // Adjust the height value as needed
+                                        />
+                                        <h3 style={{color: "black", marginTop: "10px"}}>Men's Casual Wear</h3>
+                                        <p style={{color: "black"}}>Express Your Identity</p>
+                                    </Link>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <CardImg
@@ -67,7 +70,7 @@ function NewArr() {
                                         alt="Ad"
                                         style={{ height: '55vh' }} // Adjust the height value as needed
                                     />
-                                    <h3>Women's Glamour Wear</h3>
+                                    <h3 style={{color: "black", marginTop: "10px"}}>Women's Glamour Wear</h3>
                                     <p>Dress To Impress</p>
                                 </SwiperSlide>
                                 <SwiperSlide>
@@ -77,7 +80,7 @@ function NewArr() {
                                         alt="Ad"
                                         style={{ height: '55vh' }} // Adjust the height value as needed
                                     />
-                                    <h3>Sports Wear</h3>
+                                    <h3 style={{color: "black", marginTop: "10px"}}>Sports Wear</h3>
                                     <p>Give Your 100%</p>
                                 </SwiperSlide>
 
@@ -95,14 +98,16 @@ function NewArr() {
                                 }}
                                 >
                                 <SwiperSlide>
-                                    <CardImg
-                                        className="headerimg"
-                                        src={newar1}
-                                        alt="Ad"
-                                        style={{ height: '35vh', objectFit: "cover"}} // Adjust the height value as needed
-                                    />
-                                    <h3>Men's Casual Wear</h3>
-                                    <p>Express Your Identity</p>
+                                    <Link to="/mens" style={{ textDecoration: 'none' }}>
+                                        <CardImg
+                                            className="headerimg"
+                                            src={newar1}
+                                            alt="Ad"
+                                            style={{ height: '35vh', objectFit: "cover"}} // Adjust the height value as needed
+                                        />
+                                        <h3 style={{color: "black", marginTop: "10px"}}>Men's Casual Wear</h3>
+                                        <p style={{color: "black"}}>Express Your Identity</p>
+                                    </Link>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <CardImg
@@ -111,7 +116,7 @@ function NewArr() {
                                         alt="Ad"
                                         style={{ height: '35vh', objectFit: "cover" }} // Adjust the height value as needed
                                     />
-                                    <h3>Women's Glamour Wear</h3>
+                                    <h3 style={{color: "black", marginTop: "10px"}}>Women's Glamour Wear</h3>
                                     <p>Dress To Impress</p>
                                 </SwiperSlide>
                                 <SwiperSlide>
@@ -121,7 +126,7 @@ function NewArr() {
                                         alt="Ad"
                                         style={{ height: '35vh', objectFit: "cover" }} // Adjust the height value as needed
                                     />
-                                    <h3>Sports Wear</h3>
+                                    <h3 style={{color: "black", marginTop: "10px"}}>Sports Wear</h3>
                                     <p>Give Your 100%</p>
                                 </SwiperSlide>
 

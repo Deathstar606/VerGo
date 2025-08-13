@@ -18,6 +18,8 @@ import { googleLogin, loginUser, logoutUser, fetchDeals, fetchClothes, fetchFeat
 import { Breadcrumbs } from './Details';
 import { AnimatePresence, motion } from 'framer-motion';
 
+import { MoonLoader } from 'react-spinners';
+
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
@@ -145,6 +147,15 @@ const Main = (props) => {
     }
   };
 
+  if (props.clothes.isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh'}}>
+        <MoonLoader color="black" size={70} />
+      </div>
+    );
+  }
+
+  else 
   return (
     <>
       <Example
@@ -152,6 +163,7 @@ const Main = (props) => {
         loginUser={props.loginUser}
         logoutUser={props.logoutUser}
         googleLogin={props.googleLogin}
+        cartLength={props.auth.isAuthenticated ? props.cart.cart.length : undefined}
       />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.key}>
@@ -165,6 +177,7 @@ const Main = (props) => {
             path="/cart"
             element={
               <Carts
+                clothes={props.clothes}
                 cart={props.cart}
                 deleteCart={props.deleteCart}
               />

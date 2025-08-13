@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Container, Row, Col, CardImg, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
 import Catlist from './Cats';
 import men1 from "../images/mens/FALL-WINTER-TRENDS.jpg"
@@ -25,9 +25,13 @@ import { motion } from 'framer-motion';
 
 const Mens = (props) => {
 
-  const [swiper, setSwiper] = useState(null);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+    const [swiper, setSwiper] = useState(null);
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     if (props.clothes.isLoading) {
         return(
@@ -107,13 +111,23 @@ const Mens = (props) => {
                                 </MediaQuery>
                             </Col>
                         </Row>
-                        <div style={{display: "inline-block", marginBottom: "10px", marginLeft: "10px"} }>
-                            <Breadcrumbs items={[
-                                { link: '/home', active: false },
-                                { name: "Home / Mens", link: '', active: true }
-                            ]} />
-                        </div>
+                        <MediaQuery maxWidth={639}>
+                            <div style={{display: "inline-block", marginBottom: "10px", marginLeft: "10px", marginTop: "10px"} }>
+                                <Breadcrumbs items={[
+                                    { link: '/home', active: false },
+                                    { name: "Home / Mens", link: '', active: true }
+                                ]} />
+                            </div>
+                        </MediaQuery>
                     <Container style={{maxWidth: "85%"}}>
+                        <MediaQuery minWidth={640}>
+                            <div style={{display: "inline-block", marginBottom: "10px", marginLeft: "10px", marginTop: "10px"} }>
+                                <Breadcrumbs items={[
+                                    { link: '/home', active: false },
+                                    { name: "Home / Mens", link: '', active: true }
+                                ]} />
+                            </div>
+                        </MediaQuery>
                         <Row>
                             {catdes}
                         </Row>
