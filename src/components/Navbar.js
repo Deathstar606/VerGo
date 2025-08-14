@@ -59,7 +59,7 @@ export default function Example(props) {
   return (
     <>
       <MediaQuery maxWidth={639}>
-        <Burger />
+        <Burger auth={props.auth.isAuthenticated} cartLength={props.auth.isAuthenticated ? props.cartLength : undefined}/>
       </MediaQuery>
       <div className="d-flex justify-content-center" style={{ backgroundColor: "#EDEADF" }}>
         <div className="nav-c pt-2 pb-2">

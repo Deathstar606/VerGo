@@ -6,8 +6,8 @@ import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import './Burger.css';
 
-export default function Burger() {
-
+export default function Burger({auth, cartLength}) {
+  console.log("Burger component rendered with auth:", auth, "and cartLength:", cartLength);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -45,6 +45,32 @@ export default function Burger() {
               </RouterLink>
             </div>
           </Col>
+          {auth && (
+            <Col xs={12}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <RouterLink to="/cart" style={{ color: 'white', display: 'inline-flex', alignItems: 'center' }} onClick={closeMenu}>
+                  Cart
+                  <span
+                    style={{
+                      backgroundColor: 'red',
+                      color: 'white',
+                      borderRadius: '50%',
+                      padding: '0.2rem 0.5rem',
+                      marginLeft: '0.5rem',
+                      fontSize: '0.75rem',
+                      fontWeight: 'bold',
+                      minWidth: '20px',
+                      textAlign: 'center',
+                      display: 'inline-block',
+                      lineHeight: '1'
+                    }}
+                  >
+                    {cartLength}
+                  </span>
+                </RouterLink>
+              </div>
+            </Col>
+          )}
           <Col xs={12}>
             <div onClick={() => handleToggle('category')} style={{color: "white"}}>
               <div className={`burg-menu pr-2 pt-1`}>
