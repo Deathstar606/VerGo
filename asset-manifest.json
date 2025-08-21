@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/VerGo/static/css/main.fdaefa25.css",
-    "main.js": "/VerGo/static/js/main.92611475.js",
+    "main.js": "/VerGo/static/js/main.de09fdd6.js",
     "static/js/787.2e4ac314.chunk.js": "/VerGo/static/js/787.2e4ac314.chunk.js",
     "static/media/demo.mp4": "/VerGo/static/media/demo.7f8b711a542aa1086511.mp4",
     "static/media/man-with-sunglasses-wearing-white-t-shirt-posing.jpg": "/VerGo/static/media/man-with-sunglasses-wearing-white-t-shirt-posing.598941be6e6e5a5c87a4.jpg",
@@ -24,11 +24,11 @@
     "static/media/aline-kaplan-zara-blazer-trousers-mango-waistcoat-lobus-bag-news-photo-1692315065.jpg": "/VerGo/static/media/aline-kaplan-zara-blazer-trousers-mango-waistcoat-lobus-bag-news-photo-1692315065.a2c5b90b22c7809d7f45.jpg",
     "index.html": "/VerGo/index.html",
     "main.fdaefa25.css.map": "/VerGo/static/css/main.fdaefa25.css.map",
-    "main.92611475.js.map": "/VerGo/static/js/main.92611475.js.map",
+    "main.de09fdd6.js.map": "/VerGo/static/js/main.de09fdd6.js.map",
     "787.2e4ac314.chunk.js.map": "/VerGo/static/js/787.2e4ac314.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fdaefa25.css",
-    "static/js/main.92611475.js"
+    "static/js/main.de09fdd6.js"
   ]
 }
