@@ -96,7 +96,7 @@ const RenderItem = (props) => {
 
     return(
             <>
-            <Container className="lg-container mt-4">
+            <Container id="feast" className="lg-container mt-4">
                 <div className="d-flex justify-content-center m-5">
                     <h3 className="text-white bg-custom">Hot now 🔥</h3>
                 </div>

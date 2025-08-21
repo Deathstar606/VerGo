@@ -17,6 +17,17 @@ import "swiper/css";
 import { Link } from "react-router-dom";
 
 const HeroSec = () => {
+
+    const scrollFeast = (e) => {
+        e.preventDefault();
+        setTimeout(() => {
+            const element = document.getElementById("feast");
+            if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 500);
+    };
+
     return (
         <div className="headerback" style={{overflow: "hidden"}}>
             <Row className="m-0 g-0">
@@ -26,7 +37,7 @@ const HeroSec = () => {
                             <h1 className="display-4 font-weight-bold">Where Style Meets Substance</h1>
                             <p className="lead">Explore our products and services.</p>
                             <Link to="/mens" style={{ textDecoration: 'none' }}>
-                                <Button outline color="light">Shop Now</Button>
+                                <Button onClick={scrollFeast} outline color="light">Shop Now</Button>
                             </Link>
                         </div>
                     </Col>

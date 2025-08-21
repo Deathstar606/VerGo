@@ -64,7 +64,7 @@ export default function Example(props) {
       <div className="d-flex justify-content-center" style={{ backgroundColor: "#EDEADF" }}>
         <div className="nav-c pt-2 pb-2">
           <Navbar light expand="md">
-            <NavbarBrand href="/" className="text-dark pr-4" style={{ fontSize: "50px" }}>VerGo</NavbarBrand>
+            <NavbarBrand href="https://deathstar606.github.io/VerGo/#/home" className="text-dark pr-4" style={{ fontSize: "50px" }}>VerGo</NavbarBrand>
             <Collapse isOpen={isOpen} navbar>
               <Nav navbar>
                 <NavItem className="nav-ele">

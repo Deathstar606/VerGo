@@ -170,7 +170,7 @@ export const fetchCarts = () => async (dispatch) => {
 
 export const postCart = (clothId, image, size, color, price) => async (dispatch) => {
   if (!auth.currentUser) {
-    console.log('No user logged in!');
+    alert('No user logged in!');
     return;
   }
 

@@ -113,7 +113,6 @@ const Deats = (props) => {
 
         const handleAddToCart = () => {
             props.postCart(props.clothes._id, props.clothes.images[shirtColor][0], selectedSize, shirtColor, props.clothes.price)
-            alert("Added To Cart")
         };
 
         const Color = props.clothes.colors.map((element) => {
